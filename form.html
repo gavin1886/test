@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>填写需求 - 小程序定制需求收集系统</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center mb-4">
+                <img src="images/logo.png" alt="轻创引擎" class="img-fluid" style="max-height: 120px;">
+            </div>
+            <h1>小程序定制需求收集系统</h1>
+            <p>填写您的小程序开发需求，我们将为您提供专业评估和定制方案</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-container">
+            <h1 class="page-title">填写您的小程序需求</h1>
+            <p class="form-desc">请填写以下信息，我们将尽快与您联系</p>
+            
+            <!-- 进度指示器 -->
+            <div class="progress-container">
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar" style="width: 20%"></div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="progress-step active" data-step="project-info">项目信息</div>
+                    <div class="progress-step" data-step="app-type">类型选择</div>
+                    <div class="progress-step" data-step="page-scale">页面规模</div>
+                    <div class="progress-step" data-step="data-scale">数据规模</div>
+                    <div class="progress-step" data-step="ui-design">UI设计</div>
+                    <div class="progress-step" data-step="result">评估结果</div>
+                    <div class="progress-step" data-step="personal-info">基本信息</div>
+                </div>
+            </div>
+            
+            <div class="form-container card">
+                <form id="requirementForm">
+                    <!-- 项目信息 -->
+                    <div class="form-section" id="project-info">
+                        <h2 class="section-title">项目信息</h2>
+                        
+                        <div class="form-group">
+                            <label for="projectName" class="form-label">项目名称 <span class="required">*</span></label>
+                            <input type="text" id="projectName" name="projectName" class="form-control" placeholder="请输入您的项目名称" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="version" class="form-label">版本选择 <span class="required">*</span></label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="option-card" data-value="personal" data-target="version">
+                                        <h5>个人版</h5>
+                                        <p>基础功能，不含支付功能</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="option-card" data-value="enterprise" data-target="version">
+                                        <h5>企业版</h5>
+                                        <p>高级功能，支持支付功能</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="version" name="version" value="">
+                            
+                            <!-- 版本功能对比表 -->
+                            <div class="version-comparison mt-3">
+                                <h5 class="mb-3">功能权限差异（核心区别）</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>功能模块</th>
+                                                <th>个人版</th>
+                                                <th>企业版</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>微信支付</td>
+                                                <td class="text-danger">✗ 不可用</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td>个人版无法实现交易闭环</td>
+                                            </tr>
+                                            <tr>
+                                                <td>获取用户手机号</td>
+                                                <td class="text-danger">✗ 不可用</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td>企业版可收集用户手机号（需授权）</td>
+                                            </tr>
+                                            <tr>
+                                                <td>卡券与会员功能</td>
+                                                <td class="text-danger">✗ 不可用</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td>会员卡、优惠券、积分体系等</td>
+                                            </tr>
+                                            <tr>
+                                                <td>直播功能</td>
+                                                <td class="text-danger">✗ 不可用</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td>电商直播、活动直播等</td>
+                                            </tr>
+                                            <tr>
+                                                <td>广告组件</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td class="text-success">✓ 可用</td>
+                                                <td>均可接入流量主广告</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deadline" class="form-label">期望完成时间</label>
+                            <input type="text" id="deadline" name="deadline" class="form-control" placeholder="例如：一个月内、2024年12月前等">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="index.html" class="btn-secondary">返回首页</a>
+                            <button type="button" class="btn-primary next-step" data-next="app-type">下一步</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 小程序类型选择 -->
+                    <div class="form-section" id="app-type" style="display: none;">
+                        <h2 class="section-title">小程序类型选择</h2>
+                        
+                        <div class="form-group">
+                            <label for="appTypeCategory" class="form-label">选择小程序类型 <span class="required">*</span></label>
+                            <div class="alert alert-info">
+                                <small>请选择您需要开发的小程序类型，此选择作为需求参考</small>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="tool" data-version="both">
+                                        <h5>工具类 <span class="badge bg-success">个人版可用</span></h5>
+                                        <p>计算器、翻译、天气查询等功能性应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="entertainment" data-version="both">
+                                        <h5>娱乐类 <span class="badge bg-success">个人版可用</span></h5>
+                                        <p>小游戏、测试、趣味问答等休闲应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="news" data-version="both">
+                                        <h5>资讯类 <span class="badge bg-success">个人版可用</span></h5>
+                                        <p>新闻、行业资讯、知识库等内容应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="social" data-version="both">
+                                        <h5>社交类 <span class="badge bg-success">个人版可用</span></h5>
+                                        <p>社区、论坛、兴趣小组等互动应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="ecommerce" data-version="enterprise">
+                                        <h5>电商类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>商城、团购、预售等销售应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="service" data-version="enterprise">
+                                        <h5>服务类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>美容、医疗、教育等预约服务应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="enterprise" data-version="enterprise">
+                                        <h5>企业管理类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>员工管理、任务分配、数据统计等</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="o2o" data-version="enterprise">
+                                        <h5>O2O类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>外卖、家政、上门服务等线上到线下应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="government" data-version="enterprise">
+                                        <h5>政务民生类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>公共服务查询、办事指南等政务应用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card app-type-card" data-value="education" data-version="enterprise">
+                                        <h5>教育培训类 <span class="badge bg-warning">仅企业版</span></h5>
+                                        <p>在线课程、题库、学习社区等教育应用</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="appTypeCategory" name="appTypeCategory" value="">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="project-info">上一步</button>
+                            <button type="button" class="btn-primary next-step" data-next="page-scale">下一步</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 页面规模与结构 -->
+                    <div class="form-section" id="page-scale" style="display: none;">
+                        <h2 class="section-title">页面规模与结构</h2>
+                        <p class="section-desc">请选择您需要的小程序页面规模</p>
+                        
+                        <div class="form-group mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="micro" data-rating="1" data-target="pageScale">
+                                        <h5>微型 <span class="star-rating">★☆☆☆☆</span></h5>
+                                        <p>1-3个页面，基础信息展示，简单线性结构</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="small" data-rating="2" data-target="pageScale">
+                                        <h5>小型 <span class="star-rating">★★☆☆☆</span></h5>
+                                        <p>4-6个页面，基础功能页面，简单层级结构</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="medium" data-rating="3" data-target="pageScale">
+                                        <h5>中型 <span class="star-rating">★★★☆☆</span></h5>
+                                        <p>7-10个页面，功能与展示结合，多层级结构</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="large" data-rating="4" data-target="pageScale">
+                                        <h5>大型 <span class="star-rating">★★★★☆</span></h5>
+                                        <p>11-15个页面，复杂功能页面，复杂层级与关联</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="xlarge" data-rating="5" data-target="pageScale">
+                                        <h5>超大型 <span class="star-rating">★★★★★</span></h5>
+                                        <p>15个以上页面，高度定制功能，复杂多维结构</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="pageScale" name="pageScale" value="">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="app-type">上一步</button>
+                            <button type="button" class="btn-primary next-step" data-next="data-scale">下一步</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据规模与存储需求 -->
+                    <div class="form-section" id="data-scale" style="display: none;">
+                        <h2 class="section-title">数据规模与存储需求</h2>
+                        <p class="section-desc">请选择您预计的数据规模和用户量</p>
+                        
+                        <div class="form-group mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="micro" data-rating="1" data-target="dataScale">
+                                        <h5>微型 <span class="star-rating">★☆☆☆☆</span></h5>
+                                        <p>日活跃用户少于100，数据量小于1GB</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="small" data-rating="2" data-target="dataScale">
+                                        <h5>小型 <span class="star-rating">★★☆☆☆</span></h5>
+                                        <p>日活跃用户100-1,000，数据量1-10GB</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="medium" data-rating="3" data-target="dataScale">
+                                        <h5>中型 <span class="star-rating">★★★☆☆</span></h5>
+                                        <p>日活跃用户1,000-10,000，数据量10-100GB</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="large" data-rating="4" data-target="dataScale">
+                                        <h5>大型 <span class="star-rating">★★★★☆</span></h5>
+                                        <p>日活跃用户10,000-100,000，数据量100GB-1TB</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="option-card" data-value="xlarge" data-rating="5" data-target="dataScale">
+                                        <h5>超大型 <span class="star-rating">★★★★★</span></h5>
+                                        <p>日活跃用户超过100,000，数据量超过1TB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="dataScale" name="dataScale" value="">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="page-scale">上一步</button>
+                            <button type="button" class="btn-primary next-step" data-next="ui-design">下一步</button>
+                        </div>
+                    </div>
+                    
+                    <!-- UI设计 -->
+                    <div class="form-section" id="ui-design" style="display: none;">
+                        <h2 class="section-title">UI设计</h2>
+                        
+                        <div class="form-group">
+                            <label for="uiDesign" class="form-label">UI设计要求 <span class="required">*</span></label>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="option-card" data-value="basic" data-rating="1" data-target="uiDesign">
+                                        <h5>基础UI</h5>
+                                        <p>使用微信基础组件，无专业设计</p>
+                                        <div class="features">
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">微信基础组件</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">基础屏幕适配</span>
+                                            </div>
+                                            <div class="feature text-muted">
+                                                <span class="feature-icon">✗</span>
+                                                <span class="feature-text">定制设计</span>
+                                            </div>
+                                        </div>
+                                        <div class="price-tag">
+                                            <span>0元/页</span>
+                                        </div>
+                                        <div class="rating">★☆☆☆☆</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="option-card" data-value="simple" data-rating="2" data-target="uiDesign">
+                                        <h5>简单UI</h5>
+                                        <p>使用现成模板，有基本美化</p>
+                                        <div class="features">
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">统一风格图标</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">2-3种协调色调</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">基本适配主流机型</span>
+                                            </div>
+                                        </div>
+                                        <div class="price-tag">
+                                            <span>100元/页</span>
+                                        </div>
+                                        <div class="rating">★★☆☆☆</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="option-card" data-value="standard" data-rating="3" data-target="uiDesign">
+                                        <h5>标准UI</h5>
+                                        <p>定制设计，有品牌元素融入</p>
+                                        <div class="features">
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">部分定制UI组件</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">品牌色调搭配</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">平滑过渡动画</span>
+                                            </div>
+                                        </div>
+                                        <div class="price-tag">
+                                            <span>200元/页</span>
+                                        </div>
+                                        <div class="rating">★★★☆☆</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="option-card" data-value="professional" data-rating="4" data-target="uiDesign">
+                                        <h5>专业级UI</h5>
+                                        <p>全定制设计，精美视觉效果</p>
+                                        <div class="features">
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">大部分定制组件</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">完整品牌色彩系统</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">精细动效和交互</span>
+                                            </div>
+                                        </div>
+                                        <div class="price-tag">
+                                            <span>300元/页</span>
+                                        </div>
+                                        <div class="rating">★★★★☆</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div class="option-card" data-value="custom" data-rating="5" data-target="uiDesign">
+                                        <h5>高端定制UI</h5>
+                                        <p>独特创意设计，复杂动效</p>
+                                        <div class="features">
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">全部原创定制设计</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">创意色彩搭配与渐变</span>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">✓</span>
+                                                <span class="feature-text">复杂创意动效</span>
+                                            </div>
+                                        </div>
+                                        <div class="price-tag">
+                                            <span>500元/页</span>
+                                        </div>
+                                        <div class="rating">★★★★★</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="uiDesign" name="uiDesign" value="">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="requirements" class="form-label">其他需求或说明</label>
+                            <textarea id="requirements" name="requirements" class="form-control" rows="3" placeholder="请填写其他需求或说明事项，或留空"></textarea>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="data-scale">上一步</button>
+                            <button type="button" class="btn-primary next-step" data-next="result">查看评估结果</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 评估结果 -->
+                    <div class="form-section" id="result" style="display: none;">
+                        <h2 class="section-title">项目评估结果</h2>
+                        
+                        <!-- 小程序类型与功能复杂度结果 -->
+                        <div class="result-card mb-4">
+                            <h3>小程序类型与功能复杂度</h3>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="result-rating me-3">
+                                    <span id="appTypeRatingStars" class="star-rating-large">★★★☆☆</span>
+                                </div>
+                                <div class="result-level">
+                                    <span id="appTypeRatingText" class="badge bg-primary">商业级</span>
+                                </div>
+                            </div>
+                            <div class="result-description">
+                                <p id="appTypeDescription">商业应用型小程序，包含用户系统、支付、数据管理等功能，适合中等规模业务需求。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 项目评估摘要 -->
+                        <div class="result-summary mb-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="summary-item">
+                                        <h5>第一年费用</h5>
+                                        <p id="firstYearPrice" class="price-large">12,500元</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="summary-item">
+                                        <h5>后续年费</h5>
+                                        <p id="yearlyPrice" class="price-large">3,500元/年</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <div class="summary-item">
+                                        <h5>预计开发周期</h5>
+                                        <p id="developmentTime">2个月</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 价格计算详情 -->
+                        <div class="price-details mb-4">
+                            <h4>价格构成详情</h4>
+                            <div class="card card-body bg-light">
+                                <h5>第一年费用</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>小程序基础开发费用：</strong><span id="baseDevFee">8,000元</span></p>
+                                        <p><strong>UI设计费用：</strong><span id="uiDesignFee">2,000元</span></p>
+                                        <p><strong>小程序认证费：</strong><span id="wechatCertFee">300元/年</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>服务器及存储费用：</strong><span id="serverFee">3,000元/年</span></p>
+                                        <p><strong>SSL证书费用：</strong><span id="sslCertFee">600元/年</span></p>
+                                        <p><strong>其他费用：</strong><span id="otherFee">300元</span></p>
+                                    </div>
+                                </div>
+                                <p><strong>版本系数：</strong><span id="versionFactor">1.0 (企业版)</span></p>
+                                <p class="text-success"><strong>维护费用：</strong>首年免费</p>
+                                <hr>
+                                <p class="mb-3"><strong>第一年总计：</strong><span id="totalPrice">12,500元</span></p>
+                                
+                                <h5>后续年费</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>服务器及存储费用：</strong><span id="serverFee2">3,000元/年</span></p>
+                                        <p><strong>小程序认证费：</strong><span id="wechatCertFee2">300元/年</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>SSL证书费用：</strong><span id="sslCertFee2">600元/年</span></p>
+                                        <p><strong>维护费用：</strong><span id="maintenanceFee">1,875元/年</span></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="mb-0"><strong>后续年费总计：</strong><span id="subsequentYearFee">4,875元/年</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- 增值服务推荐 -->
+                        <div class="value-added-services mb-4">
+                            <h4>推荐增值服务</h4>
+                            <div class="card card-body">
+                                <div class="service-item mb-3">
+                                    <h5>数据分析与业务洞察</h5>
+                                    <p>根据您的项目星级，可获得每年和每季度的数据分析与业务洞察报告</p>
+                                    
+                                    <div class="table-responsive mt-3">
+                                        <table class="table table-hover table-sm">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>服务内容</th>
+                                                    <th>频率</th>
+                                                    <th>说明</th>
+                                                    <th>适用星级</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><i class="bi bi-bar-chart-line me-2 text-primary"></i>行业报告</td>
+                                                    <td>每年提供 1×(星级) 次</td>
+                                                    <td>包含行业趋势、竞品分析、市场机会等</td>
+                                                    <td><span class="text-warning">★★</span>及以上</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="bi bi-graph-up-arrow me-2 text-primary"></i>数据分析报告</td>
+                                                    <td>每季度提供 1×(星级) 次</td>
+                                                    <td>用户行为分析、转化率分析、留存分析等</td>
+                                                    <td><span class="text-warning">★★</span>及以上</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="bi bi-lightbulb me-2 text-primary"></i>业务洞察建议</td>
+                                                    <td>随数据分析报告提供</td>
+                                                    <td>基于数据分析结果提供业务优化建议</td>
+                                                    <td><span class="text-warning">★★</span>及以上</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="bi bi-person-workspace me-2 text-primary"></i>专属数据分析师</td>
+                                                    <td>可选服务</td>
+                                                    <td>提供专属数据分析师定制深度分析</td>
+                                                    <td><span class="text-warning">★★</span>及以上</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="alert alert-info mt-3">
+                                        <i class="bi bi-info-circle-fill me-2"></i>
+                                        <strong>服务说明：</strong>数据分析与业务洞察服务首年免费提供，次年起收取定制费用。服务次数按项目星级计算：★★项目每年获得2次行业报告，每季度获得2次数据分析；★★★项目每年获得3次行业报告，每季度获得3次数据分析；以此类推。小于等于一星的项目不提供此服务。
+                                    </div>
+                                </div>
+                                <div class="service-item">
+                                    <h5>维护服务</h5>
+                                    <p>首年免费维护，次年起收取总费用15%的维护费</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="ui-design">上一步</button>
+                            <div class="btn-group">
+                                <button type="button" class="btn-outline-secondary" id="saveQuoteOnly">暂不填写，仅保存报价</button>
+                                <button type="button" class="btn-primary next-step" data-next="personal-info">有意向，继续填写</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 基本信息 -->
+                    <div class="form-section" id="personal-info" style="display: none;">
+                        <h2 class="section-title">基本信息</h2>
+                        <p class="alert alert-info">您对我们的报价满意，请留下您的联系方式，我们将尽快联系您！</p>
+                        
+                        <div class="form-group">
+                            <label for="name" class="form-label">姓名 <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入您的姓名" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">联系电话 <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="请输入您的联系电话" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="wechat" class="form-label">微信号 <span class="required">*</span></label>
+                            <input type="text" id="wechat" name="wechat" class="form-control" placeholder="请输入您的微信号" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">电子邮箱</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="请输入您的电子邮箱">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn-secondary prev-step" data-prev="result">上一步</button>
+                            <button type="submit" class="btn-primary submit-btn">提交需求</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 步骤导航 -->
+            <div class="step-navigation mt-4">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="project-info">项目信息</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="app-type">类型选择</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="page-scale">页面规模</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="data-scale">数据规模</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="ui-design">UI设计</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="result">评估结果</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary mx-1" data-step="personal-info">基本信息</button>
+                    <a href="index.html" class="btn btn-sm btn-outline-secondary mx-1">返回首页</a>
+                </div>
+            </div>
+            
+            <!-- 提示信息 -->
+            <div class="toast" id="toast">
+                <div class="toast-content" id="toastMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <img src="images/logo.png" alt="轻创引擎" class="img-fluid footer-logo" style="max-height: 60px;">
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-1">© 2024 小程序定制需求收集系统</p>
+                    <p class="mb-0">技术支持：轻创引擎 <small class="text-muted">微信小程序开发运营分析一站式平台</small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
