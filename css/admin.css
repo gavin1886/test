@@ -1,9 +1,0 @@
-/* 仅报价卡片样式 */
-.quote-only-card {
-    border-left: 3px solid #17a2b8;
-    background-color: #f8f9fa;
-}
-
-.quote-only-card .card-header {
-    background-color: rgba(23, 162, 184, 0.1);
-} 
